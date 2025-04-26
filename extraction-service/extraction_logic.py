@@ -35,7 +35,26 @@ def extract_database():
     return df
 
 
+def extract_csv():
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    csv_path = os.path.join(base_dir, "data", "physical_shop_sales.csv")
+    
+    print(f"CSV file path: {csv_path}")  
 
+    if not os.path.exists(csv_path):
+        print(f"CSV file not found at: {csv_path}")  
+        return None
+    
+    try:
+        df = pd.read_csv(csv_path)
+        if df.empty:
+            print("No csv data found.")
+        else:
+            print(f"CSV data extracted:\n{df}")
+    except Exception as e:
+        print(f"Error during CSV extraction: {e}")
+
+    return df
 
 
 
@@ -45,5 +64,7 @@ if __name__ == "__main__":
     print("Testing SQL extraction...")
     extract_database()
 
-
+    # Test CSV extraction
+    print("Testing CSV extraction...")
+    extract_csv()
 
