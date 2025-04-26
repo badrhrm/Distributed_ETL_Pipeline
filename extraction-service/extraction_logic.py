@@ -56,7 +56,7 @@ def extract_csv():
 
     return df
 
-
+"""
 
 if __name__ == "__main__":
     print("Running extraction logic...")
@@ -68,3 +68,4 @@ if __name__ == "__main__":
     print("Testing CSV extraction...")
     extract_csv()
 
+"""
