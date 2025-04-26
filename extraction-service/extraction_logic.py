@@ -3,7 +3,7 @@ import pandas as pd
 import pyodbc
 import os
 
-def extract_database():
+def extract_database(table_name):
     server = 'localhost'       
     database = 'SysDist'
     username = 'adia'
@@ -19,7 +19,7 @@ def extract_database():
         print(f"Error connecting to database: {e}")
         return None
 
-    query = "SELECT * FROM users"  
+    query = f"SELECT * FROM {table_name}"  
     print(f"Executing query: {query}")
 
     try:

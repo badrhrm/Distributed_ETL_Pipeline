@@ -12,7 +12,8 @@ import extraction_logic
 
 class ExtractionServiceServicer(extraction_pb2_grpc.ExtractionServiceServicer):
     def ExtractDatabase(self, request, context):
-        df = extraction_logic.extract_database()
+        table_name = request.table_name
+        df = extraction_logic.extract_database(table_name)
         json_data = df.to_json(orient="records")
         return extraction_pb2.ExtractResponse(data=json_data.encode('utf-8'))
 
