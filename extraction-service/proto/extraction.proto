@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package extraction;
+
+service ExtractionService {
+  rpc ExtractDatabase (EmptyRequest) returns (ExtractResponse);
+  rpc ExtractCSV (EmptyRequest) returns (ExtractResponse);
+}
+
+message EmptyRequest {}
+
+message ExtractResponse {
+  bytes data = 1;  // raw serialized data (e.g., JSON bytes, pickled, etc.)
+}
