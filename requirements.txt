@@ -1,6 +1,11 @@
-grpcio==1.71.0
-grpcio-tools==1.71.0
-protobuf==5.29.4
-numpy==2.2.5
-pandas==2.2.3
-pyodbc==5.2.0
+grpcio
+grpcio-tools
+protobuf 
+pandas 
+pyodbc
+sqlalchemy
+python-dotenv
+pyspark
+Flask
+Flask-SQLAlchemy
+APScheduler
