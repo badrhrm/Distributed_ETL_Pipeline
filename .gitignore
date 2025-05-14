@@ -1,0 +1,20 @@
+# Python cache and metadata
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+
+# default for DBs, configs
+instance/
+*.db
+
+# Dotenv files 
+.env
