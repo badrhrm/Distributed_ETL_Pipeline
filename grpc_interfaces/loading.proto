@@ -1,0 +1,14 @@
+// loading.proto
+syntax = "proto3";
+
+import "common.proto";  // Import common.proto
+
+package loading;
+
+message MultiLoadRequest {
+    repeated common.TableData tables = 1;  // Use common.TableData
+}
+
+service LoadingService {
+    rpc LoadAll(MultiLoadRequest) returns (common.LoadResponse);  // Use common.LoadResponse
+}

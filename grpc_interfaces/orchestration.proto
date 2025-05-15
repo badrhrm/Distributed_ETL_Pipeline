@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "common.proto";  // Import common.proto
+
+package orchestration;
+
+message UpdateScheduleRequest {
+  string day_of_week = 1;
+  int32 hour = 2;
+  int32 minute = 3;
+}
+
+service OrchestrationService {
+    rpc OrchestrateETL(common.EmptyRequest) returns (common.LoadResponse);
+    rpc UpdateSchedule(UpdateScheduleRequest) returns (common.LoadResponse);
+}
+

@@ -1,0 +1,18 @@
+// transformation.proto
+syntax = "proto3";
+
+import "common.proto";  // Import common.proto
+
+package transformation;
+
+message MultiExtractRequest {
+    repeated common.TableData tables = 1;  // Use common.TableData
+}
+
+message MultiTransformResponse {
+    repeated common.TableData tables = 1;  // Use common.TableData
+}
+
+service TransformationService {
+    rpc TransformAll(MultiExtractRequest) returns (MultiTransformResponse);
+}
