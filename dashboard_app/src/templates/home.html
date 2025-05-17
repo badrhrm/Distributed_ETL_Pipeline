@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Home</title></head>
+<body>
+    <h2>Welcome, {{ username }}!</h2>
+    <a href="{{ url_for('main.logout') }}">Logout</a>
+
+    <h3>ETL Dashboard</h3>
+
+    <!-- Button to trigger ETL -->
+    <form action="{{ url_for('main.trigger_etl') }}" method="post">
+        <button type="submit">Start ETL Process</button>
+    </form>
+
+    <!-- Display the result message -->
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>
