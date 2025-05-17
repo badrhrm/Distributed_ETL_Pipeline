@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set ETL Schedule</title>
+</head>
+<body>
+    <h1>Set ETL Schedule</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li><strong>{{ category }}:</strong> {{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="POST" action="{{ url_for('main.update_schedule_view') }}">
+        <label for="day_of_week">Day of the week:</label>
+        <select id="day_of_week" name="day_of_week">
+            <option value="mon">Monday</option>
+            <option value="tue">Tuesday</option>
+            <option value="wed">Wednesday</option>
+            <option value="thu">Thursday</option>
+            <option value="fri">Friday</option>
+            <option value="sat">Saturday</option>
+            <option value="sun">Sunday</option>
+        </select>
+        <br><br>
+        <label for="hour">Hour (24-hour format):</label>
+        <input type="number" id="hour" name="hour" min="0" max="23" required>
+        <br><br>
+        <label for="minute">Minute:</label>
+        <input type="number" id="minute" name="minute" min="0" max="59" required>
+        <br><br>
+        <button type="submit">Update Schedule</button>
+    </form>
+</body>
+</html>
