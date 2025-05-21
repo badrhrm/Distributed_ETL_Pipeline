@@ -5,7 +5,6 @@ pandas
 pyodbc
 sqlalchemy
 python-dotenv
-pyspark
 Flask
 Flask-SQLAlchemy
 APScheduler
