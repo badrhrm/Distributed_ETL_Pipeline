@@ -1,0 +1,14 @@
+// extraction.proto
+syntax = "proto3";
+
+import "common.proto";  // Import common.proto
+
+package extraction;
+
+message MultiExtractResponse {
+    repeated common.TableData tables = 1;  // Use common.TableData
+}
+
+service ExtractionService {
+    rpc ExtractAll(common.EmptyRequest) returns (MultiExtractResponse);  // Use common.EmptyRequest
+}

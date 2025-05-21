@@ -25,6 +25,7 @@ class TransformationServiceServicer(transformation_pb2_grpc.TransformationServic
             extracted_data[table.table_name] = df
 
         # Apply transformation logic
+        print("--- calling transfromation logic from trans server ---")
         transformed_data = transformation_logic.transform_all_data(extracted_data)
 
         # Build response (send back transformed data as bytes)

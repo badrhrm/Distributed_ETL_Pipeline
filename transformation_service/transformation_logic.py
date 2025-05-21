@@ -14,3 +14,4 @@ def transform_all_data(data):
             transformed[table_name] = None
 
     return transformed
+
