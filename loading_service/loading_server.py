@@ -17,11 +17,22 @@ class LoadingServiceServicer(loading_pb2_grpc.LoadingServiceServicer):
         return common_pb2.LoadResponse(message="Data loaded successfully.")
 
 def serve():
+# Create a gRPC server with a thread pool executor (up to 10 worker threads)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+
+    # Register the service implementation (LoadingServiceServicer) with the server
     loading_pb2_grpc.add_LoadingServiceServicer_to_server(LoadingServiceServicer(), server)
+
+    # Bind the server to port 50053 on all network interfaces (IPv4 & IPv6)
     server.add_insecure_port('[::]:50053')
+
+    # Print a message to indicate the server has started
     print("Loading gRPC Server started at port 50053...")
+
+# Start the server
     server.start()
+
+    # Keep the server running indefinitely, waiting for termination
     server.wait_for_termination()
 
 if __name__ == '__main__':

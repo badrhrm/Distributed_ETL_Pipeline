@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>📊 Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📈 Data Visualisation Dashboard</h1>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% else %}
+        {{ chart1|safe }}
+        {{ chart2|safe }}
+        {{ chart3|safe }}
+        {{ chart4|safe }}
+        {{ chart5|safe }}
+    {% endif %}
+</body>
+</html>

@@ -35,14 +35,17 @@ def extract_csv():
 
 
 def extract_all_data():
-    # Get DB connection parameters from environment variables
-    server = os.environ.get('DB_SERVER')
-    database = os.environ.get('DB_DATABASE')
-    username = os.environ.get('DB_USERNAME')
-    password = os.environ.get('DB_PASSWORD')
+    # Direct DB connection parameters
+    server = r'DESKTOP-RS85SUQ\SQLEXPRESS'
+    database = 'sysdis'
+    username = 'sa'
+    password = '12345678'
 
-    # Create connection string using SQLAlchemy
-    connection_string = f"mssql+pyodbc://{username}:{password}@{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server"
+    # SQLAlchemy connection string
+    connection_string = (
+        f"mssql+pyodbc://{username}:{password}@{server}/{database}"
+        "?driver=ODBC+Driver+17+for+SQL+Server"
+    )
 
     try:
         engine = create_engine(connection_string)

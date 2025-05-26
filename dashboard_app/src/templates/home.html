@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head><title>Home</title></head>
+<head>
+    <title>Home</title>
+</head>
 <body>
     <h2>Welcome, {{ username }}!</h2>
     <a href="{{ url_for('main.logout') }}">Logout</a>
@@ -16,5 +18,10 @@
     {% if message %}
     <p>{{ message }}</p>
     {% endif %}
+
+    <!-- Button to go to Visualization -->
+    <form action="{{ url_for('main.visualize') }}" method="get">
+        <button type="submit">View Visualizations</button>
+    </form>
 </body>
 </html>
