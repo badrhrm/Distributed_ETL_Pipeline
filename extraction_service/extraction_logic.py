@@ -36,10 +36,10 @@ def extract_csv():
 
 def extract_all_data():
     # Direct DB connection parameters
-    server = r'DESKTOP-RS85SUQ\SQLEXPRESS'
-    database = 'sysdis'
-    username = 'sa'
-    password = '12345678'
+    server = os.environ.get('DB_SERVER')
+    database = os.environ.get('DB_DATABASE')
+    username = os.environ.get('DB_USERNAME')
+    password = os.environ.get('DB_PASSWORD')
 
     # SQLAlchemy connection string
     connection_string = (
