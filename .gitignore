@@ -18,3 +18,6 @@ instance/
 
 # Dotenv files 
 .env
+
+# vscode config
+.vscode/
