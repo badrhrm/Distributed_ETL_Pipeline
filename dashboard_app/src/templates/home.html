@@ -1,27 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ETL Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Welcome, {{ username }}!</h2>
-    <a href="{{ url_for('main.logout') }}">Logout</a>
 
-    <h3>ETL Dashboard</h3>
+  <header class="header">
+    <span>Welcome, {{ username }}!</span>
+    <a href="{{ url_for('main.logout') }}">
+      <button>Logout</button>
+    </a>
+  </header>
 
-    <!-- Button to trigger ETL -->
-    <form action="{{ url_for('main.trigger_etl') }}" method="post">
-        <button type="submit">Start ETL Process</button>
-    </form>
+  <main class="main-content">
+    <div class="center-box">
+      <h1>Your store  statistics<br><strong>LibroTics</strong></h1>
 
-    <!-- Display the result message -->
-    {% if message %}
-    <p>{{ message }}</p>
-    {% endif %}
+      <div class="button-group">
+        <form action="{{ url_for('main.trigger_etl') }}" method="post" style="display:inline;">
+          <button class="etl-btn" type="submit">Run ETL Process</button>
+        </form>
+        <form action="{{ url_for('main.visualize') }}" method="get" style="display:inline;">
+          <button class="data-btn" type="submit">View Visualizations</button>
+        </form>
+      </div>
 
-    <!-- Button to go to Visualization -->
-    <form action="{{ url_for('main.visualize') }}" method="get">
-        <button type="submit">View Visualizations</button>
-    </form>
+      {% if message %}
+        <p id="success-msg">{{ message }}</p>
+      {% else %}
+        <p id="success-msg" style="display: none;">ETL completed successfully!</p>
+      {% endif %}
+
+      <div class="image-container">
+        <img src="{{ url_for('static', filename='bookstor.png') }}" alt="ETL Bookstore">
+      </div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@ from src.views.routes import main
 from scripts.create_admin import create_admin_if_not_exists
 
 def create_app():
-    app = Flask(__name__, template_folder='src/templates')
+    app = Flask(__name__, template_folder='src/templates' ,static_folder='src/static')
     app.config.from_object(Config)
 
     # Initialize extensions

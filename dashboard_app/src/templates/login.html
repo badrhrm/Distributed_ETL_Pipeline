@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html>
-<head><title>Login</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BIBLIO Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
 <body>
-    <h2>Login</h2>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul style="color:red">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-    <form method="POST">
-        Username: <input name="username" type="text"><br>
-        Password: <input name="password" type="password"><br>
-        <input type="submit" value="Login">
-    </form>
+    <div class="container">
+       <center> <h1 class="logo">📚 LibroTics</h1></center>
+        <form class="login-box" method="POST">
+            <label>Username</label>
+            <input type="username" name="username" required placeholder="username">
+            
+            <label>Password</label>
+            <input type="password" name="password" required placeholder="Password">
+            
+            <div class="forgot">
+                <a href="#">Forgot password?</a>
+            </div>
+            
+            <button type="submit">Log in</button>
+            
+
+        </form>
+    </div>
 </body>
 </html>

@@ -1,29 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>📊 Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
-            margin-bottom: 30px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>📊 Visualisation des Données</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .chart-container {
+      display: none;
+      margin-top: 30px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .visualisation-buttons {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .visualisation-buttons button {
+      background-color: #3b1201;
+      color: #fff;
+      padding: 15px 30px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .visualisation-buttons button:hover {
+      background-color: #793e29;
+    }
+  </style>
+  <script>
+    function showChart(id) {
+      const charts = document.querySelectorAll('.chart-container');
+      charts.forEach(chart => chart.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function goHome() {
+      window.location.href = "/";
+    }
+  </script>
 </head>
 <body>
-    <h1>📈 Data Visualisation Dashboard</h1>
 
-    {% if error %}
+  <header class="header">
+    <span>📊 Tableau de bord</span>
+    <button onclick="goHome()">🏠 Accueil</button>
+  </header>
+
+  <main class="main-content">
+    <div class="center-box">
+      <h1>Visualisations ETL</h1>
+
+      {% if error %}
         <p style="color:red;">{{ error }}</p>
-    {% else %}
-        {{ chart1|safe }}
-        {{ chart2|safe }}
-        {{ chart3|safe }}
-        {{ chart4|safe }}
-        {{ chart5|safe }}
-    {% endif %}
+      {% else %}
+
+        <div class="visualisation-buttons">
+        <button onclick="showChart('chart4')">📦 Monthly Items Sold by Shop</button>
+        <button onclick="showChart('chart2')">💰 Monthly Revenue by Shop</button>
+        <button onclick="showChart('chart1')">🗂️ Online Book Sales by Category</button>
+        <button onclick="showChart('chart5')">🏆 Top 5 Selling Books</button>
+        <button onclick="showChart('chart5')">📊 Revenue Comparison (Online vs Physical)</button>
+  
+        <button onclick="showChart('chart3')">📚 Top Revenue-Generating Categories (Online)</button>
+
+
+        <div id="chart1" class="chart-container">{{ chart1|safe }}</div>
+        <div id="chart2" class="chart-container">{{ chart2|safe }}</div>
+        <div id="chart3" class="chart-container">{{ chart3|safe }}</div>
+        <div id="chart4" class="chart-container">{{ chart4|safe }}</div>
+        <div id="chart5" class="chart-container">{{ chart5|safe }}</div>
+        <div id="chart6" class="chart-container">{{ chart6|safe }}</div>
+
+      {% endif %}
+    </div>
+  </main>
+
 </body>
 </html>

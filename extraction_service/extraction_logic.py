@@ -2,7 +2,6 @@ import pandas as pd
 from sqlalchemy import create_engine
 import os
 
-
 def extract_table(engine, table_name):
     query = f"SELECT * FROM {table_name}"
     try:
@@ -13,7 +12,6 @@ def extract_table(engine, table_name):
         print(f"Error during SQL execution for table {table_name}: {e}")
         df = None
     return df
-
 
 def extract_csv():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -33,15 +31,14 @@ def extract_csv():
 
     return df
 
-
 def extract_all_data():
-    # Direct DB connection parameters
-    server = os.environ.get('DB_SERVER')
-    database = os.environ.get('DB_DATABASE')
-    username = os.environ.get('DB_USERNAME')
-    password = os.environ.get('DB_PASSWORD')
+    # Get DB connection parameters from environment variables with default fallback
+    server = os.environ.get('DB_SERVER', r'DESKTOP-RS85SUQ\SQLEXPRESS')
+    database = os.environ.get('DB_DATABASE', 'sysdis')
+    username = os.environ.get('DB_USERNAME', 'sa')
+    password = os.environ.get('DB_PASSWORD', '12345678')
 
-    # SQLAlchemy connection string
+    # SQLAlchemy connection string for MS SQL Server using pyodbc driver
     connection_string = (
         f"mssql+pyodbc://{username}:{password}@{server}/{database}"
         "?driver=ODBC+Driver+17+for+SQL+Server"
@@ -54,7 +51,7 @@ def extract_all_data():
         print(f"Error connecting to database: {e}")
         return {}
 
-    # Extract data from all SQL tables
+    # Tables to extract
     tables = [
         'users',
         'authors',
@@ -70,7 +67,7 @@ def extract_all_data():
         if df is not None:
             results[table] = df
 
-    # Extract data from CSV
+    # Extract CSV data
     csv_df = extract_csv()
     if csv_df is not None:
         results["physical_shop_sales"] = csv_df

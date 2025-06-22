@@ -1,0 +1,43 @@
+#version: '3.9'
+
+services:
+  extraction_service:
+    build: .
+    command: python extraction_service/extraction_server.py
+    volumes:
+      - .:/app
+    depends_on: []
+
+  transformation_service:
+    build: .
+    command: python transformation_service/transformation_server.py
+    volumes:
+      - .:/app
+    depends_on:
+      - extraction_service
+
+  loading_service:
+    build: .
+    command: python loading_service/loading_server.py
+    volumes:
+      - .:/app
+    depends_on:
+      - transformation_service
+
+  orchestration_service:
+    build: .
+    command: python orchestration_service/orchestration_server.py
+    volumes:
+      - .:/app
+    depends_on:
+      - loading_service
+
+  dashboard_app:
+    build: .
+    command: python dashboard_app/app.py
+    volumes:
+      - .:/app
+    ports:
+      - "8501:8501"  # Example for Streamlit
+    depends_on:
+      - orchestration_service

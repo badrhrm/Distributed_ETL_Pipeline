@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url("biblio-prive.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo {
+    color: white;
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.login-box {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 320px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+.login-box label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.login-box input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.login-box button {
+    background-color: #631b03;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.login-box .forgot {
+    text-align: right;
+    margin-top: 5px;
+}
