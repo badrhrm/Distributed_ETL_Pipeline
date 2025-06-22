@@ -9,5 +9,5 @@ function viewData() {
 }
 
 function logout() {
-  alert("Logging out...");
+  alert("Logging out....");
 }

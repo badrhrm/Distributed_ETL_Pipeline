@@ -67,9 +67,9 @@ def transform_all_data(online_df, physical_df):
     combined_df['week'] = combined_df['date'].dt.isocalendar().week
     combined_df['day'] = combined_df['date'].dt.date
 
-    items_by_period = combined_df.groupby(['shop', 'year', 'month', 'week', 'day'])['quantity'].sum().reset_index(name='total_items_sold')
-    revenue_by_period = combined_df.groupby(['shop', 'year', 'month', 'week', 'day'])['revenue'].sum().reset_index(name='total_revenue')
-    category_breakdown = combined_df.groupby(['shop', 'category'])['quantity'].sum().reset_index(name='total_quantity')
+    items_by_period = combined_df.groupby(['shop', 'year', 'month'])['quantity'].sum().reset_index(name='total_items_sold')
+    revenue_by_period = combined_df.groupby(['shop', 'year', 'month'])['revenue'].sum().reset_index(name='total_revenue')
+    category_breakdown = online_df.groupby(['category'])['quantity'].sum().reset_index(name='total_quantity')
 
     top_products = combined_df.groupby('product_name')['quantity'].sum().reset_index(name='total_quantity') \
                               .sort_values(by='total_quantity', ascending=False).head(5)
@@ -83,7 +83,7 @@ def transform_all_data(online_df, physical_df):
     gender_category = online_df.groupby(['gender', 'category']).agg({'quantity': 'sum'}).reset_index()
     gender_comparison = gender_category.loc[gender_category.groupby('gender')['quantity'].idxmax()]
 
-    favorite_category = combined_df.groupby(['shop', 'category'])['revenue'].sum().reset_index(name='total_revenue') \
+    favorite_category = online_df.groupby(['category'])['revenue'].sum().reset_index(name='total_revenue') \
                                    .sort_values(by='total_revenue', ascending=False)
 
     return {
@@ -109,18 +109,18 @@ def save_results(results, output_dir="output"):
     results['comparison'].to_csv(f"{output_dir}/comparison.csv", index=False)
     results['gender_comparison'].to_csv(f"{output_dir}/gender_comparison.csv", index=False)
     results['favorite_category'].to_csv(f"{output_dir}/favorite_category.csv", index=False)
-    print(f"✅ All analysis results saved in: {output_dir}")
+    print(f"All analysis results saved in: {output_dir}")
 
 
 # Run pipeline
 def run_pipeline(data_dictionary):
-    print("🔄 Loading and cleaning data...")
+    print("Loading and cleaning data...")
     online_df, physical_df = load_and_clean_data(data_dictionary)
 
-    print("⚙️  Transforming and analyzing...")
+    print("Transforming and analyzing...")
     results = transform_all_data(online_df, physical_df)
 
-    print("💾 Saving results...")
+    print("Saving results...")
     save_results(results)
 
 # To use: pass your data_dictionary to run_pipeline

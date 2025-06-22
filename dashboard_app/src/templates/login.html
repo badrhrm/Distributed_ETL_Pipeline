@@ -2,26 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BIBLIO Login</title>
+    <title>Login - LibroTics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Lien vers le fichier CSS de style -->
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 <body>
     <div class="container">
-       <center> <h1 class="logo">📚 LibroTics</h1></center>
-        <form class="login-box" method="POST">
-            <label>Username</label>
-            <input type="username" name="username" required placeholder="username">
-            
-            <label>Password</label>
-            <input type="password" name="password" required placeholder="Password">
-            
+        <!-- Logo de l'application -->
+        <center><h1 class="logo">📚 LibroTics</h1></center>
+
+        <!-- Bloc des messages flash (erreurs ou succès) -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for category, message in messages %}
+                <div class="alert {{ category }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Formulaire de connexion -->
+        <form class="login-box" method="POST" action="{{ url_for('main.login') }}">
+            <!-- Champ pour le nom d'utilisateur -->
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required placeholder="Enter your username">
+
+            <!-- Champ pour le mot de passe -->
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required placeholder="Enter your password">
+
+            <!-- Lien vers la page de récupération du mot de passe -->
             <div class="forgot">
                 <a href="#">Forgot password?</a>
             </div>
-            
-            <button type="submit">Log in</button>
-            
 
+            <!-- Bouton de connexion -->
+            <button type="submit">Log in</button>
         </form>
     </div>
 </body>

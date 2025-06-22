@@ -7,7 +7,7 @@ def load_all_data(data: dict, output_dir="output") -> dict:
     os.makedirs(output_dir, exist_ok=True)
     loaded_data = {}
 
-    print("📦 Loading data and saving to output/")
+    print("Loading data and saving to output/")
 
     for table_name, data_bytes in data.items():
         try:
@@ -15,12 +15,12 @@ def load_all_data(data: dict, output_dir="output") -> dict:
             loaded_data[table_name] = df
 
             # Print summary info
-            print(f"✅ {table_name}: {df.shape[0]} rows, {df.shape[1]} columns")
+            print(f"{table_name}: {df.shape[0]} rows, {df.shape[1]} columns")
 
             # Save to CSV
             df.to_csv(os.path.join(output_dir, f"{table_name}.csv"), index=False)
 
         except Exception as e:
-            print(f"❌ Failed to load {table_name}: {e}")
+            print(f"Failed to load {table_name}: {e}")
 
     return loaded_data

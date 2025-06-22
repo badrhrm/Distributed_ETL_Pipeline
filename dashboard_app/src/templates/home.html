@@ -1,45 +1,78 @@
 <!DOCTYPE html>
+<!-- Déclaration du type de document HTML5 -->
 <html lang="en">
+<!-- Début du document HTML, avec l’attribut de langue anglaise -->
+
 <head>
   <meta charset="UTF-8">
+  <!-- Encodage UTF-8 pour prendre en charge tous les caractères -->
+  
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Rend la page responsive (adaptée à tous les écrans, y compris mobiles) -->
+
   <title>ETL Dashboard</title>
+  <!-- Titre de l’onglet du navigateur -->
+
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Inclusion du fichier CSS statique via Flask -->
 </head>
+
 <body>
+<!-- Début du corps de la page -->
 
   <header class="header">
+    <!-- En-tête de la page avec message de bienvenue et bouton de déconnexion -->
+
     <span>Welcome, {{ username }}!</span>
+    <!-- Affiche dynamiquement le nom de l'utilisateur connecté -->
+
     <a href="{{ url_for('main.logout') }}">
+      <!-- Lien vers la route Flask 'logout' pour déconnexion -->
       <button>Logout</button>
+      <!-- Bouton de déconnexion -->
     </a>
   </header>
 
   <main class="main-content">
+    <!-- Section principale du contenu -->
+
     <div class="center-box">
+      <!-- Conteneur centré pour regrouper le contenu principal -->
+
       <h1>Your store  statistics<br><strong>LibroTics</strong></h1>
+      <!-- Titre principal de la page avec un nom de plateforme stylisé -->
 
       <div class="button-group">
+        <!-- Groupe de boutons -->
+
         <form action="{{ url_for('main.trigger_etl') }}" method="post" style="display:inline;">
+          <!-- Formulaire POST vers la route Flask pour exécuter le processus ETL -->
           <button class="etl-btn" type="submit">Run ETL Process</button>
         </form>
+
         <form action="{{ url_for('main.visualize') }}" method="get" style="display:inline;">
+          <!-- Formulaire GET vers la route Flask pour afficher les visualisations -->
           <button class="data-btn" type="submit">View Visualizations</button>
         </form>
       </div>
 
       {% if message %}
+        <!-- Si un message de succès est passé par le contrôleur -->
         <p id="success-msg">{{ message }}</p>
       {% else %}
+        <!-- Sinon, affiche un message caché par défaut -->
         <p id="success-msg" style="display: none;">ETL completed successfully!</p>
       {% endif %}
 
       <div class="image-container">
+        <!-- Conteneur pour afficher une image illustrative -->
         <img src="{{ url_for('static', filename='bookstor.png') }}" alt="ETL Bookstore">
+        <!-- Image représentant le processus ou le thème de la boutique de livres -->
       </div>
     </div>
   </main>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <!-- Inclusion éventuelle d'un fichier JavaScript pour interactions dynamiques -->
 </body>
 </html>
