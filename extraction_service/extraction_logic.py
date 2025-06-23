@@ -1,6 +1,9 @@
 import pandas as pd
 from sqlalchemy import create_engine
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 def extract_table(engine, table_name):
     query = f"SELECT * FROM {table_name}"

@@ -19,5 +19,8 @@ instance/
 # Dotenv files 
 .env
 
+# output folder where processed data is stored
+output/
+
 # vscode config
 .vscode/
