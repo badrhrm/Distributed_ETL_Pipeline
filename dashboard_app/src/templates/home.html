@@ -50,6 +50,10 @@
           <button class="etl-btn" type="submit">Run ETL Process</button>
         </form>
 
+        <form action="{{ url_for('main.update_schedule_view') }}" method="get" style="display:inline; margin: 0 10px;">
+          <button class="schedule-btn" type="submit">Set Day and Time for Automatic Schedule</button>
+        </form>
+
         <form action="{{ url_for('main.visualize') }}" method="get" style="display:inline;">
           <!-- Formulaire GET vers la route Flask pour afficher les visualisations -->
           <button class="data-btn" type="submit">View Visualizations</button>
