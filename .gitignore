@@ -20,7 +20,10 @@ instance/
 .env
 
 # output folder where processed data is stored
-output/
+# Ignore all CSV files in output/
+output/*.csv
+# But keep the folder (by tracking .gitkeep)
+!output/.gitkeep
 
 # vscode config
 .vscode/
